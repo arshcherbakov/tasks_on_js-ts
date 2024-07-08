@@ -1,42 +1,20 @@
-const englishAlphabet = [
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-  "G",
-  "H",
-  "I",
-  "J",
-  "K",
-  "L",
-  "M",
-  "N",
-  "O",
-  "P",
-  "Q",
-  "R",
-  "S",
-  "T",
-  "U",
-  "V",
-  "W",
-  "X",
-  "Y",
-  "Z",
-];
-
 const isPanagram = (text) => {
-  const arrayChar = Array.from(text);
+  const alphabet = {};
 
-  for (let char of englishAlphabet) {
-    if (!arrayChar.includes(char.toLocaleLowerCase())) {
-      return false;
-    }
+  for (let index = "a".charCodeAt(); "z".charCodeAt() >= index; index++) {
+    alphabet[String.fromCharCode(index)] = false;
   }
 
-  return true;
+  text
+    .toLowerCase()
+    .split("")
+    .forEach((el) => {
+      if (!alphabet[el]) {
+        alphabet[el] = true;
+      }
+    });
+
+  return Object.values(alphabet).every((el) => el);
 };
 
 console.log(isPanagram("The quick brown fox jumps over the lazy dog"));
