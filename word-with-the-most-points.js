@@ -37,7 +37,7 @@ const high = (text) => {
     let sumBal = 0;
 
     for (let char of word) {
-      sumBal += alphabet[char] + 1;
+      sumBal += alphabet[char];
     }
 
     if (sumBal > maxBal) {
